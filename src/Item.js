@@ -6,13 +6,11 @@ function Item({ match }) {
     console.log(match);
   }, []);
 
-  const [item, setItem] = useState({
-    images: {}
-  });
+  const [item, setItem] = useState({});
 
   const fetchItem = async () => {
     const fetchItem = await fetch(
-      `https://fortnite-api.theapinetwork.com/item/get?id=${match.params.id}`
+      `https://swapi.co/api/people/${match.params.id}`
     );
     const itemObject = await fetchItem.json();
     console.log(itemObject);
@@ -22,7 +20,13 @@ function Item({ match }) {
   return (
     <div>
       <h1>{item.name}</h1>
-      <img src={item.images.transparent} alt='' />
+      <h2>height: {item.height}</h2>
+      <h2>mass: {item.mass}</h2>
+      <h2>hair_color: {item.hair_color}</h2>
+      <h2>skin_color: {item.skin_color}</h2>
+      <h2>eye_color: {item.eye_color}</h2>
+      <h2>birth_year: {item.birth_year}</h2>
+      <h2>gender: {item.gender}</h2>
     </div>
   )
 }

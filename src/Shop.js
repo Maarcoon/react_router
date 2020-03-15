@@ -11,19 +11,20 @@ function Shop() {
 
   const fetchItems = async () => {
     const data = await fetch(
-      'https://fortnite-api.theapinetwork.com/store/get'
+      'https://swapi.co/api/people/'
     );
 
     const itemsObject = await data.json();
-    console.log(itemsObject.data);
-    setItems(itemsObject.data);
+    console.log(itemsObject.results);
+    console.log(itemsObject.results[0].url.split('/'));
+    setItems(itemsObject.results);
   };
 
   return (
     <div>
       {items.map(item => (
-        <h1 key={item.itemId}>
-          <Link to={`/shop/${item.itemId}`}>{item.item.name}</Link>
+        <h1 key={item.name}>
+          <Link to={`/shop/${item.url.split('/')[5]}`}>{item.name}</Link>
         </h1>
       ))}
     </div>
